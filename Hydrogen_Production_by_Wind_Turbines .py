@@ -19,28 +19,42 @@ print('Minimum Velocity Actual = '+str(minimum_velocity_Actual)+'MW')
 print('Maximum Velocity Actual = '+str(maximum_velocity_Actual)+'MW')
 print('Minimum Velocity Forecast = '+str(minimum_velocity_Forecast)+'MW')
 print('Maximum Velocity Forecast = '+str(maximum_velocity_Forecast)+'MW')
+
 median_velocity_Actual = np.arange(0.5, math.ceil(minimum_velocity_Actual))
 median_velocity_Forecast = np.arange(0.5, math.ceil(minimum_velocity_Forecast))
 lower_limit_velocity_Actual = np.floor(median_velocity_Actual)
 upper_limit_velocity_Actual = np.ceil(median_velocity_Actual)
 lower_limit_velocity_Forecast = np.floor(median_velocity_Forecast)
 upper_limit_velocity_Forecast = np.ceil(median_velocity_Forecast)
-dictionary_frequency_distribution_Actual = {'Lower Limit Velocity Actual [m/s]':lower_limit_velocity_Actual,'Upper Limit Velocity [m/s]':upper_limit_velocity_Actual, 'Median Velocity [m/s]':median_velocity_Actual, 'Absolute Frequency':np.zeros}
-dictionary_frequency_distribution_Forecast = {'Lower Limit Velocity Forecast [m/s]':lower_limit_velocity_Forecast,'Upper Limit Velocity [m/s]':upper_limit_velocity_Forecast, 'Median Velocity [m/s]':median_velocity_Forecast, 'Absolute Frequency':np.zeros}
+dictionary_frequency_distribution_Actual = {'Lower Limit Velocity Actual [m/s]':lower_limit_velocity_Actual,'Upper Limit Velocity Actual [m/s]':upper_limit_velocity_Actual, 'Median Velocity Actual [m/s]':median_velocity_Actual, 'Absolute Frequency Actual':np.zeros}
+dictionary_frequency_distribution_Forecast = {'Lower Limit Velocity Forecast [m/s]':lower_limit_velocity_Forecast,'Upper Limit Velocity Forecast [m/s]':upper_limit_velocity_Forecast, 'Median Velocity Forecast [m/s]':median_velocity_Forecast, 'Absolute Frequency Forecast ':np.zeros}
 df_frequency_distribution_Actual = pd.DataFrame(dictionary_frequency_distribution_Actual)
 df_frequency_distribution_Forecast = pd.DataFrame(dictionary_frequency_distribution_Forecast)
 df_frequency_distribution_Actual.head(15)
 df_frequency_distribution_Forecast.head(15)
-for i in df_wind_data['Actual Wind Generation  (MW)']:
-    for j in range(0, df_frequency_distribution_Actual.shape[0]):
-         if (i < df_frequency_distribution_Actual,df_frequency_distribution_Forecast['upper_limit_velocity_Actual [m/s]'][j]) and (i > df_frequency_distribution_Actual['Lower Limit Velocity_Actual [m/s]'][j]):
-            df_frequency_distribution_Actual['Absolute Frequency'][j] = 1 + df_frequency_distribution_Actual['Absolute Frequency'][j]
-df_frequency_distribution_Actual.insert(loc = (df_frequency_distribution_Actual.shape[1]),column = 'Relative Frequency', value = df_frequency_distribution_Actual['Absolute Frequency']/df_frequency_distribution_Actual['Absolute Frequency'].sum())
-df_frequency_distribution_Actual.insert(loc = (df_frequency_distribution_Actual.shape[1]),column = 'Relative Frequency [%]', value = 100*df_frequency_distribution_Actual['Relative Frequency'])
-df_frequency_distribution_Actual.head(15)
+
+#for i in df_wind_data['Actual Wind Generation  (MW)']:
+    #for j in range(0, df_frequency_distribution_Actual.shape[0]):
+         #if (i < df_frequency_distribution_Actual['upper_limit_velocity_Actual [m/s]'][j]) and (i > df_frequency_distribution_Actual['Lower Limit Velocity_Actual [m/s]'][j]):
+            #df_frequency_distribution_Actual['Absolute Frequency'][j] = 1 + df_frequency_distribution_Actual['Absolute Frequency'][j]
+#df_frequency_distribution_Actual.insert(loc = (df_frequency_distribution_Actual.shape[1]),column = 'Relative Frequency Actual', value = df_frequency_distribution_Actual['Absolute Frequency Actual']/df_frequency_distribution_Actual['Absolute Frequency Actual'].sum())
+#df_frequency_distribution_Actual.insert(loc = (df_frequency_distribution_Actual.shape[1]),column = 'Relative Frequency Actual [%]', value = 100*df_frequency_distribution_Actual['Relative Frequency Actual'])
 df_wind_genereation_Actual=(df_wind_data["Actual Wind Generation  (MW)"],df_wind_data['Forecast Wind Generation (MW)'])
-plt.bar(df_wind_genereation_Actual[minimum_velocity_Actual],df_wind_data['Actual Wind Generation  (MW)'], color='b')
-plt.show()
+print(df_wind_genereation_Actual)
+#plt.bar(df_wind_genereation_Actual[minimum_velocity_Actual],df_wind_data['Actual Wind Generation  (MW)'], color='b')
+#plt.show()
+
+#for i in df_wind_data['Forecast Wind Generation (MW)']:
+    #for j in range(0, df_frequency_distribution_Forecast.shape[0]):
+         #if (i < df_frequency_distribution_Forecast['upper limit velocity Forecast [m/s]'][j]) and (i > df_frequency_distribution_Forecast['Lower Limit Velocity Forecast [m/s]'][j]):
+            #df_frequency_distribution_Forecast['Absolute Frequency Forecast'][j] = 1 + df_frequency_distribution_Forecast['Absolute Frequency Forecast'][j]
+#df_frequency_distribution_Forecast.insert(loc = (df_frequency_distribution_Forecast.shape[1]),column = 'Relative Frequency Forecast', value = df_frequency_distribution_Forecast['Absolute Frequency Forecast']/df_frequency_distribution_Forecast['Absolute Frequency Forecast'].sum())
+#df_frequency_distribution_Forecast.insert(loc = (df_frequency_distribution_Forecast.shape[1]),column = 'Relative Frequency Forecast [%]', value = 100*df_frequency_distribution_Forecast['Relative Frequency Forecast'])
+#df_wind_genereation_Forecast=(df_wind_data["Forecast Wind Generation  (MW)"],df_wind_data['Forecast Wind Generation (MW)'])
+#print(df_wind_genereation_Forecast)
+#plt.bar(df_wind_genereation_Forecast[minimum_velocity_Forecast],df_wind_data['Forecast Wind Generation  (MW)'], color='b')
+#plt.show()
+
 #plt.bar(df_wind_genereation_Forecast[minimum_velocity_Forecast],df_wind_data['Actual Wind Generation  (MW)'], color='b')
 #plt.bar(df_wind_genereation[minimum_velocity_Actual],df_wind_data['Actual Wind Generation  (MW)'], color='b')
 #plt.title('Minimum Velocity', fontsize=20)
