@@ -21,11 +21,11 @@ print('Maximum Velocity Actual = '+str(maximum_velocity_Actual)+'MW')
 print('Minimum Velocity Forecast = '+str(minimum_velocity_Forecast)+'MW')
 print('Maximum Velocity Forecast = '+str(maximum_velocity_Forecast)+'MW')
 
-print(df_wind_data["DateTime"])
+#print(df_wind_data["DateTime"])
 df_wind_genereation_Actual=(df_wind_data["Actual Wind Generation  (MW)"])
-print(df_wind_genereation_Actual)
+#print(df_wind_genereation_Actual)
 df_wind_genereation_Forecast=(df_wind_data['Forecast Wind Generation (MW)'])
-print(df_wind_genereation_Forecast)
+#print(df_wind_genereation_Forecast)
 
 #Calculating Voltage reversible & Overpotential for PEM Electrolyzer
 from numpy import log as ln
@@ -79,13 +79,13 @@ N_dot_H2O_reacted=J / (2 * F)                                         #Molar rat
 N_dot_H2_out = N_dot_H2O_reacted                                      #Molar outlet flow rate of H2
 η=(N_dot_H2_out*HHV_H2)/(E+Q_cell+Q_H2O)
 
-P="Actual Wind Generation  (MW)"  #available energy
+P=df_wind_genereation_Actual  #available energy
 Vc=1.229           #Cell voltage
 F = 96485.3365 #Faraday's constant (C/mol)
 M=1.00794  #molar mass of hydrogen (g/mol)
-m_H2=(P/Vc*2*F)*(M*η)
-print("m_H2: ",m_H2)
-
+m_H2=(P/(Vc*2*F))*((M*η))
+print("m_H2: ",m_H2.avr(0,96))
+print(0.000562+0.000562+0.000562+0.000562+0.000562+0.000562+0.000562+0.000562+0.000562+0.000562+0.000562+0.000562+0.000562+0.000562+0.000562+0.000562+0.000562+0.000562+0.000562+0.000562+0.000562+0.000562+0.000562+0.000562)
 
 
 #print("Production hydroogen: ",Vovr*df_wind_genereation_Actual)
