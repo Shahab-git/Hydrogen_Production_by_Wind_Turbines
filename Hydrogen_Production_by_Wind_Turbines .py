@@ -61,8 +61,31 @@ v_cell= 1.229 #Cell voltage
 w1="Actual Wind Generation  (MW)"
 #eta_el=((delta_H*Ncell)/(z*F))*((eta_F/v_cell))
 #print("eta_el: ",eta_el)
-M_H2=(65%*w1)/(int(LHV_H2))
-print("M_H2: ",M_H2)
+#M_H2=(65%*w1)/(int(LHV_H2))
+#print("M_H2: ",M_H2)
+
+#Q_heat_H2O"
+enthalpy= 285.9                    #kJ/mol
+J = 6000
+E = 76000
+F = 96485.3365 #Faraday's constant (C/mol)
+T_PEME_K = 353
+T_0 = 273
+P_0=101.3 #[kPa]
+Q_H2O=5.061
+HHV_H2=141860 #(kJ/kg)
+Q_cell=0
+N_dot_H2O_reacted=J / (2 * F)                                         #Molar rate of H2O consumed in the reaction
+N_dot_H2_out = N_dot_H2O_reacted                                      #Molar outlet flow rate of H2
+η=(N_dot_H2_out*HHV_H2)/(E+Q_cell+Q_H2O)
+
+P="Actual Wind Generation  (MW)"  #available energy
+Vc=1.229           #Cell voltage
+F = 96485.3365 #Faraday's constant (C/mol)
+M=1.00794  #molar mass of hydrogen (g/mol)
+m_H2=(P/Vc*2*F)*(M*η)
+print("m_H2: ",m_H2)
+
 
 
 #print("Production hydroogen: ",Vovr*df_wind_genereation_Actual)
