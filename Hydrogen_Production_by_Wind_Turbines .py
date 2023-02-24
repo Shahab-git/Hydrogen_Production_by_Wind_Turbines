@@ -50,7 +50,21 @@ Watt=Istack*Vovr
 print("Watt: ",Watt)
 
 
+
 #Production Hydrogen
+LHV_H2 = 119950  #kJ/kg
+F = 96485.3365 #Faraday's constant (C/mol)
+Ncell = 1000   #Number of cell per stack
+delta_H=286 #Hydrogen higher heating value(Joule)
+z=1        #Number of electrons exchanged during the reaction
+v_cell= 1.229 #Cell voltage
+w1="Actual Wind Generation  (MW)"
+#eta_el=((delta_H*Ncell)/(z*F))*((eta_F/v_cell))
+#print("eta_el: ",eta_el)
+M_H2=(65%*w1)/(int(LHV_H2))
+print("M_H2: ",M_H2)
+
+
 #print("Production hydroogen: ",Vovr*df_wind_genereation_Actual)
 
 
