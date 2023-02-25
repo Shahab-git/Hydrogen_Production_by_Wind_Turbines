@@ -7,11 +7,14 @@ from sklearn.preprocessing import LabelEncoder
 from scipy.optimize import fsolve
 from scipy.interpolate import make_interp_spline
 plt.rc('figure', figsize=(15,10))
-df_wind_data = pd.read_csv('chart 1-1.csv', )
+df_wind_data = pd.read_csv('chart 1-1.csv' )
 df_wind_data.columns
 df_wind_data.head()
 df_wind_data.info()
 
+
+time = df_wind_data["DateTime"]
+print("Time= "+str(time))
 minimum_velocity_Actual = df_wind_data["Actual Wind Generation  (MW)"].min()
 maximum_velocity_Actual = df_wind_data["Actual Wind Generation  (MW)"].max()
 minimum_velocity_Forecast = df_wind_data["Forecast Wind Generation (MW)"].min()
@@ -76,3 +79,12 @@ F = 96485.3365                              #Faraday's constant (C/mol)
 M=1.00794                                   #molar mass of hydrogen (g/mol)
 m_H2=(P/(Vc*2*F))*((M*η))
 print("m_H2: ","\n",m_H2)
+
+plt.plot(df_wind_data["DateTime"], df_wind_data["Actual Wind Generation  (MW)"], color='y')
+#x = np.array(["DateTime"])
+#y = np.array(["m_H2"])
+plt.title('Power Curve', fontsize=20)
+plt.ylabel('Production Hydrogen (kg)', fontsize=12)
+plt.xlabel('time', fontsize=12)
+plt.xlim(10,15)
+plt.savefig('power_curve_wind_turbine_2.png', dpi=300, bbox_inches='tight')
