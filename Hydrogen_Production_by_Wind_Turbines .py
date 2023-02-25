@@ -49,76 +49,31 @@ print("Vovr: ",Vovr)
 Watt=Istack*Vovr
 print("Watt: ",Watt)
 
-
-
 #Production Hydrogen
-LHV_H2 = 119950  #kJ/kg
-F = 96485.3365 #Faraday's constant (C/mol)
-Ncell = 1000   #Number of cell per stack
-delta_H=286 #Hydrogen higher heating value(Joule)
-z=1        #Number of electrons exchanged during the reaction
-v_cell= 1.229 #Cell voltage
-w1="Actual Wind Generation  (MW)"
-#eta_el=((delta_H*Ncell)/(z*F))*((eta_F/v_cell))
-#print("eta_el: ",eta_el)
-#M_H2=(65%*w1)/(int(LHV_H2))
-#print("M_H2: ",M_H2)
+LHV_H2 = 119950                             #kJ/kg
+Ncell = 1000                                #Number of cell per stack
+delta_H=286                                 #Hydrogen higher heating value(Joule)
+z=1                                         #Number of electrons exchanged during the reaction
+v_cell= 1.229                               #Cell voltage
 
 #Q_heat_H2O"
-enthalpy= 285.9                    #kJ/mol
+enthalpy= 285.9                             #kJ/mol
 J = 6000
 E = 76000
-F = 96485.3365 #Faraday's constant (C/mol)
+F = 96485.3365                              #Faraday's constant (C/mol)
 T_PEME_K = 353
 T_0 = 273
-P_0=101.3 #[kPa]
+P_0=101.3                                   #[kPa]
 Q_H2O=5.061
-HHV_H2=141860 #(kJ/kg)
+HHV_H2=141860                               #(kJ/kg)
 Q_cell=0
-N_dot_H2O_reacted=J / (2 * F)                                         #Molar rate of H2O consumed in the reaction
-N_dot_H2_out = N_dot_H2O_reacted                                      #Molar outlet flow rate of H2
+N_dot_H2O_reacted=J / (2 * F)               #Molar rate of H2O consumed in the reaction
+N_dot_H2_out = N_dot_H2O_reacted            #Molar outlet flow rate of H2
 η=(N_dot_H2_out*HHV_H2)/(E+Q_cell+Q_H2O)
-
-P=df_wind_genereation_Actual  #available energy
-Vc=1.229           #Cell voltage
-F = 96485.3365 #Faraday's constant (C/mol)
-M=1.00794  #molar mass of hydrogen (g/mol)
+P=df_wind_genereation_Actual                #available energy
+Vc=1.229                                    #Cell voltage
+F = 96485.3365                              #Faraday's constant (C/mol)
+M=1.00794                                   #molar mass of hydrogen (g/mol)
 m_H2=(P/(Vc*2*F))*((M*η))
-print("m_H2: ",m_H2.avr(0,96))
-print(0.000562+0.000562+0.000562+0.000562+0.000562+0.000562+0.000562+0.000562+0.000562+0.000562+0.000562+0.000562+0.000562+0.000562+0.000562+0.000562+0.000562+0.000562+0.000562+0.000562+0.000562+0.000562+0.000562+0.000562)
+print("m_H2: ","\n",m_H2)
 
-
-#print("Production hydroogen: ",Vovr*df_wind_genereation_Actual)
-
-
-
-#sns.boxenplot(df_wind_data=df_wind_data)
-#plt.boxplot(data.price)
-#data.corr()
-
-#labelencoder = LabelEncoder()
-#data['cd'] = labelencoder.fit_transform(data['cd'])
-#data['multi'] = labelencoder.fit_transform(data['multi'])
-#data['premium'] = labelencoder.fit_transform(data['premium'])
-
-#def norm_func(i):
-    #x = (i-i.min())	/	(i.max()	-	i.min())
-    #return (x)
-
-#df_norm = norm_func(data.iloc[:,1:])
-#df_norm.describe()
-#data.info()
-#data.head(5)
-
-#x= data[['speed','hd','ram','screen','cd','multi','premium','ads','trend']]
-#y= data[['price']]
-
-#m1 = sm.OLS(y,x).fit()
-#m1.params
-#m1.summary()
-
-#price_pred =m1.predict(x)
-#print(m1.conf_int(0.05))
-
-#plt.scatter(y,price_pred,c="r");plt.xlabel("observed_values");plt.ylabel("fitted_values")
-#plt.plot(y,price_pred,color='black');plt.xlabel('Delivery Time');plt.ylabel('Sorting Time')
