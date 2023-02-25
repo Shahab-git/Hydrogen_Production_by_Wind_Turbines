@@ -76,5 +76,3 @@ F = 96485.3365                              #Faraday's constant (C/mol)
 M=1.00794                                   #molar mass of hydrogen (g/mol)
 m_H2=(P/(Vc*2*F))*((M*η))
 print("m_H2: ","\n",m_H2)
-
-
