@@ -78,19 +78,22 @@ Vc=1.229                                    #Cell voltage
 F = 96485.3365                              #Faraday's constant (C/mol)
 M=1.00794                                   #molar mass of hydrogen (g/mol)
 m_H2=(P/(Vc*2*F))*((M*η))
-print("m_H2: ","\n",m_H2)
+print("m_H2: ","\n",m_H2[0:97])
+
 df_hydrogen_data=["m_H2"]
 print(df_hydrogen_data)
-#df_hydrogen_data = pd.DataFrame(columns=["m_H2"], index=range(df_hydrogen_data))
 
-#df_power_data['Median Velocity [m/s]'] = median_velocity_50_meters
 
-#df_hydrogen_data.head(41)
-plt.plot(df_wind_data["DateTime"],df_hydrogen_data["m_H2"], color='y')
-#x = np.array(["DateTime"])
-#y = np.array(["m_H2"])
-plt.title('Power Curve', fontsize=20)
-plt.ylabel('Production Hydrogen (kg)', fontsize=12)
-plt.xlabel('time', fontsize=12)
-plt.xlim(10,15)
-plt.savefig('power_curve_wind_turbine_2.png', dpi=300, bbox_inches='tight')
+df_hydrogen_data = pd.DataFrame(columns=["m_H2"], index=range(df_wind_data.shape[0]))
+df_hydrogen_data["m_H2"] = m_H2
+df_hydrogen_data.head()
+
+
+
+
+#plt.plot(df_wind_data["DateTime"],df_hydrogen_data["m_H2"], color='y')
+#plt.title('Power Curve', fontsize=20)
+#plt.ylabel('Production Hydrogen (kg)', fontsize=12)
+#plt.xlabel('time', fontsize=12)
+#plt.xlim(0,97)
+#plt.savefig('power_curve_wind_turbine_2.png', dpi=300, bbox_inches='tight')
