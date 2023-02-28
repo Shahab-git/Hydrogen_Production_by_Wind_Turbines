@@ -73,11 +73,7 @@ Q_cell=0
 N_dot_H2O_reacted=J / (2 * F)               #Molar rate of H2O consumed in the reaction
 N_dot_H2_out = N_dot_H2O_reacted            #Molar outlet flow rate of H2
 η=(N_dot_H2_out*HHV_H2)/(E+Q_cell+Q_H2O)
-
-
 P=df_wind_genereation_Actual*24             #available energy
-
-
 Vc=1.229                                    #Cell voltage
 M=1.00794                                   #molar mass of hydrogen (g/mol)
 m_H2=(P/(Vc*2*F))*M*η #kg
@@ -90,21 +86,17 @@ e=print(sum(m_H2[385:480]))
 f=print(sum(m_H2[481:576]))
 g=print(sum(m_H2[577:672]))
 
-
 df_hydrogen_data=["m_H2"]
 #print(df_hydrogen_data)
-
 
 df_hydrogen_data = pd.DataFrame(columns=["m_H2"], index=range(df_wind_data.shape[0]))
 df_hydrogen_data["m_H2"] = m_H2
 df_hydrogen_data.head()
 
-
-
-
 plt.plot(df_wind_data["DateTime"],df_hydrogen_data["m_H2"], color='y')
 plt.title('Power Curve', fontsize=20)
 plt.ylabel('Production Hydrogen (kg)', fontsize=12)
 plt.xlabel('time', fontsize=12)
-#plt.xlim(0,97)
-plt.savefig('power_curve_wind_turbine_2.png', dpi=300, bbox_inches='tight')
+plt.xlim(0,50)
+plt.ylim()
+#plt.savefig('power_curve_wind_turbine_2.png', dpi=300, bbox_inches='tight')
